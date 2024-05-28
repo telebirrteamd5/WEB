@@ -1,0 +1,120 @@
+/**index.mass**/
+.home{
+    width: 100%;
+}
+
+.content {
+    width: 100%;
+    background: #fff;
+    padding-bottom: 18px;
+}
+
+.content p {
+    margin-left: 16px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #58595b;
+    font-weight: 600;
+}
+
+.amount {
+    margin: 0 9px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+
+.tips {
+    width: 65px;
+    height: 65px;
+    margin-right: 6px;
+    border-radius: 3px;
+    background-color: #d0def6;
+}
+
+.tips img {
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+}
+
+
+.per {
+    width: 48.7%;
+    margin-bottom: 8px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    box-sizing: border-box;
+}
+
+.perb {
+    padding: 4px 6px 4px 4px;
+    border: 1px solid #e6e6e6;
+}
+
+.per-act {
+    padding: 3px 5px 3px 3px;
+    border: 2px solid #0053aa;
+}
+
+.per span {
+    width: 100%;
+    display: block;
+    text-align: left;
+    line-height: 32px;
+}
+
+.dscription {
+    flex: 1;
+    width: 100%;
+}
+
+.bg1 {
+    font-size: 10px;
+    color: #7f7f7f;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.fn2 {
+    font-size: 12px;
+    color: #000;
+    font-weight: bold;
+}
+
+.footer {
+    padding: 0 19px;
+}
+
+.footer button {
+    width: 100%;
+    margin: 2px 0 16px;
+    color: #fff;
+    height: 47px;
+    line-height: 47px;
+    text-align: center;
+    border-radius: 3px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+}
+
+.c {
+    background: #0053aa;
+}
+
+.b {
+    background: #99badd;
+}
+
+.footer .p {
+    text-align: center;
+    height: 17px;
+    line-height: 17px;
+    color: #0053aa;
+    font-size: 12px;
+    padding-bottom: 23px;
+}
