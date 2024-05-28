@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>AutoLogin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0">
+
+    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/2.0.1/weui.min.css">
+    <script type="text/javascript" src="https://res.wx.qq.com/t/wx_fed/cdn_libs/res/weui/1.2.3/weui.min.js"></script>
+    <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>
+    <script>
+        // VConsole will be exported to `window.VConsole` by default.
+        var vConsole = new window.VConsole();
+    </script>
+    <script src="js/xm.js"></script>
+    <script src="js/config.js"></script>
+    <script>
+        function autoLogin() {
+            console.log("merchantAppId", merchantAppId);
+            getMiniAppToken().then(token => {
+                authToken(token);
+            }).catch(ex => {
+            }).finally(() => {
+            });
+        }
+
+        // get token from app
+        function getMiniAppToken() {
+            return new Promise((resolve, reject) => {
+                window.xm.native("getMiniAppToken", {appId: merchantAppId}).then(res => {
+                    console.log("res", res);
+                    let data = JSON.parse(res);
+                    resolve(data.token);
+                }).catch(ex => {
+                    reject(ex);
+                });
+            });
+        }
+
+        // call H5 service auth token and get userinfo
+        function authToken(token) {
+            let loading = weui.loading('loading', {});
+            window.fetch(baseUrl + "/auth/token", {
+                method: "post",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    authToken: token
+                })
+            }).then(res => {
+                res.json().then(json => {
+                    console.log(json);
+                    let biz = json.biz_content;
+                    let openId = biz.open_id;
+                    let identityId = biz.identityId;
+                    console.log(openId);
+                    document.getElementById('userinfo').innerHTML =
+                        `openId: <br> <span style='color:red;'>${openId}</span>
+                <br>
+                identityId: <br> <span style='color:red;'>${identityId}</span>`;
+                });
+            }).finally(() => {
+                loading.hide();
+            })
+        }
+
+    </script>
+    <style>
+        .login {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .login button {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="login">
+    <button onclick="autoLogin();">AutoLogin</button>
+</div>
+<div class="userinfo" id="userinfo">
+
+</div>
+<div style="text-align: center">
+    <a href="product_list.html">view giftcard list</a>
+</div>
+</body>
+</html>
